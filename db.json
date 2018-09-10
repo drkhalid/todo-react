@@ -2,33 +2,39 @@
   "todos": [
     {
       "text": "third",
-      "done": true,
+      "done": false,
+      "fav": true,
       "id": 3
     },
     {
       "text": "fourth",
-      "done": true,
+      "done": false,
+      "fav": true,
       "id": 4
     },
     {
       "text": "fifth",
       "done": true,
+      "fav": false,
       "id": 5
     },
     {
       "text": "thend",
-      "done": true,
+      "done": false,
+      "fav": true,
       "id": 7
     },
     {
       "text": "sdjf",
       "done": true,
-      "id": 12
+      "id": 12,
+      "fav": false
     },
     {
       "text": "new",
       "done": true,
-      "id": 13
+      "id": 13,
+      "fav": true
     }
   ]
 }

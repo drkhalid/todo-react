@@ -4,6 +4,7 @@
   width: 70%;
   margin: 0 auto;
   font-size: 2em;
+  height: 100%;
 }
 
 .newtaskclass {
@@ -19,6 +20,10 @@
 }
 .newtaskclass::placeholder {
   color: rgb(180, 167, 167);
+}
+
+.done {
+  text-decoration: line-through;
 }
 
 .todo,

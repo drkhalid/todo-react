@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import Axios from "axios";
-
+import "@fortawesome/fontawesome-free/css/all.css";
 import "./App.css";
 
 class App extends Component {
   state = {
     list: [],
-    newTask: "",
-    done: false
+    newTask: ""
   };
 
   url = "http://localhost:3000/todos/";
@@ -33,7 +32,25 @@ class App extends Component {
   toDone = data => {
     Axios.put(this.url + data.id, {
       text: data.text,
-      done: !this.state.done
+      done: true,
+      fav: data.fav
+    }).then(res => {
+      this.setState({
+        list: this.state.list.map(r => {
+          if (r.id === res.data.id) {
+            return res.data;
+          }
+          return r;
+        })
+      });
+    });
+  };
+
+  unDone = data => {
+    Axios.put(this.url + data.id, {
+      text: data.text,
+      done: false,
+      fav: data.fav
     }).then(res => {
       this.setState({
         list: this.state.list.map(r => {
@@ -73,8 +90,19 @@ class App extends Component {
             })
             .map((eachOne, i) => (
               <div key={i} className="task">
-                <input type="checkbox" onChange={() => this.toDone(eachOne)} />
+                <input
+                  type="checkbox"
+                  checked={false}
+                  onChange={() => this.toDone(eachOne)}
+                />
                 {eachOne.text}
+                <span>
+                  {eachOne.fav ? (
+                    <i class="fas fa-star" />
+                  ) : (
+                    <i class="far fa-star" />
+                  )}
+                </span>
               </div>
             ))}
         </div>
@@ -88,10 +116,17 @@ class App extends Component {
               <div key={i} className="task">
                 <input
                   type="checkbox"
-                  onChange={() => this.toDone(eachOne)}
+                  onChange={() => this.unDone(eachOne)}
                   checked
                 />
                 {eachOne.text}
+                <span>
+                  {eachOne.fav ? (
+                    <i class="fas fa-star" />
+                  ) : (
+                    <i class="far fa-star" />
+                  )}
+                </span>
               </div>
             ))}
         </div>
