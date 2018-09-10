@@ -130,19 +130,19 @@ class App extends Component {
                 />
                 {eachOne.text}
                 <span>
-                  {eachOne.fav ? (
+                  {!eachOne.fav ? (
                     <i
                       onClick={() => {
                         this.toFav(eachOne);
                       }}
-                      class="fas fa-star"
+                      class="far fa-star"
                     />
                   ) : (
                     <i
                       onClick={() => {
                         this.unFav(eachOne);
                       }}
-                      class="far fa-star"
+                      class="fas fa-star"
                     />
                   )}
                 </span>
@@ -164,19 +164,19 @@ class App extends Component {
                 />
                 {eachOne.text}
                 <span>
-                  {eachOne.fav ? (
+                  {!eachOne.fav ? (
                     <i
                       onClick={() => {
                         this.toFav(eachOne);
                       }}
-                      class="fas fa-star"
+                      class="far fa-star"
                     />
                   ) : (
                     <i
                       onClick={() => {
                         this.unFav(eachOne);
                       }}
-                      class="far fa-star"
+                      class="fas fa-star"
                     />
                   )}
                 </span>
