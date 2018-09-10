@@ -46,6 +46,39 @@ class App extends Component {
     });
   };
 
+  toFav = data => {
+    Axios.put(this.url + data.id, {
+      text: data.text,
+      done: data.done,
+      fav: true
+    }).then(res => {
+      this.setState({
+        list: this.state.list.map(r => {
+          if (r.id === res.data.id) {
+            return res.data;
+          }
+          return r;
+        })
+      });
+    });
+  };
+  unFav = data => {
+    Axios.put(this.url + data.id, {
+      text: data.text,
+      done: data.done,
+      fav: false
+    }).then(res => {
+      this.setState({
+        list: this.state.list.map(r => {
+          if (r.id === res.data.id) {
+            return res.data;
+          }
+          return r;
+        })
+      });
+    });
+  };
+
   unDone = data => {
     Axios.put(this.url + data.id, {
       text: data.text,
@@ -98,9 +131,19 @@ class App extends Component {
                 {eachOne.text}
                 <span>
                   {eachOne.fav ? (
-                    <i class="fas fa-star" />
+                    <i
+                      onClick={() => {
+                        this.toFav(eachOne);
+                      }}
+                      class="fas fa-star"
+                    />
                   ) : (
-                    <i class="far fa-star" />
+                    <i
+                      onClick={() => {
+                        this.unFav(eachOne);
+                      }}
+                      class="far fa-star"
+                    />
                   )}
                 </span>
               </div>
@@ -122,9 +165,19 @@ class App extends Component {
                 {eachOne.text}
                 <span>
                   {eachOne.fav ? (
-                    <i class="fas fa-star" />
+                    <i
+                      onClick={() => {
+                        this.toFav(eachOne);
+                      }}
+                      class="fas fa-star"
+                    />
                   ) : (
-                    <i class="far fa-star" />
+                    <i
+                      onClick={() => {
+                        this.unFav(eachOne);
+                      }}
+                      class="far fa-star"
+                    />
                   )}
                 </span>
               </div>
